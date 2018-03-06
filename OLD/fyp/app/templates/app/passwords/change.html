@@ -1,0 +1,62 @@
+{% extends "generics/layouts/master.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="form-sign">
+            <form method="post" name="form-signup" class="sign">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12 wrapper">
+                        <div class="form-sign-header logo">Forrgit</div>
+                        <div class="form-sign-subheader">Reset your ID password</div>
+                        <div class="form-group">
+
+                            {% if form.errors %}
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <div class="alert alert-danger">
+                                            <strong>{{ error|escape }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                                {% for error in form.non_field_errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+
+                        {% for field in form %}
+                            <div class="form-group">
+                                {# <label class="my_class" for="{{ field.name }}">{{ field.label }}</label>#}
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-block jeans" value="Reset &raquo">
+                        </div>
+                        <div class="form-group">
+                            <div class="form-sign-link">
+                                <a class="" href='/signup'>I do not have an account</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock body%}
+
+{% block scripts %}
+    {% load static %}
+    <script type="text/javascript">
+        $( document ).ready(function() {
+
+        });
+    </script>
+{% endblock scripts %}
